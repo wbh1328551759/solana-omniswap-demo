@@ -20,7 +20,7 @@ export function SolanaWalletProvider({ children }: { children?: ReactNode }) {
   const wallets = useMemo(
     () => [
       new PhantomWalletAdapter(),
-      new SolflareWalletAdapter(),
+      // new SolflareWalletAdapter(),
     ],
     [endpoint]
   )

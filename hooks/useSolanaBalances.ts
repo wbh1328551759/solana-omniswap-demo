@@ -28,7 +28,7 @@ export const useSolanaBalances = (): { data: ParsedTokenInfo[], isLoading: boole
         uiAmount: parseFloat(formatUnits(accountsTokens[0].lamports, SOL_TOKEN_INFO.decimals)),
         uiAmountString: formatUnits(accountsTokens[0].lamports, SOL_TOKEN_INFO.decimals).toString(),
         isNativeAsset: true,
-        address: SOL_TOKEN_INFO.address
+        address: SOL_TOKEN_INFO.address,
       })
       setNativeTokenBalance(formatToken)
       setSolTokens(solTokens => [formatToken])
@@ -53,14 +53,15 @@ export const useSolanaBalances = (): { data: ParsedTokenInfo[], isLoading: boole
           decimals: i.account.data.parsed?.info?.tokenAmount?.decimals,
           isNativeAsset: false,
           logo: '',
+          mintAccount: i.pubkey
         })
       })
       const allTokens: ParsedTokenInfo[] = [...solTokens, ...formatRes].map(i => {
         const token = solAllTokenList.find(token => token.address === i.address)
         return {
           ...i,
-          symbol: token?.symbol,
-          logo: token?.logoURI,
+          symbol: token?.symbol || 'unknown',
+          logo: token?.logoURI || '',
         }
       })
       const uniqueObj: Record<string, ParsedTokenInfo> = {}

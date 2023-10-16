@@ -88,7 +88,6 @@ export const SolanaModal = () => {
     )
     const swapData = Buffer.from([])
 
-
     const {
       sendConfig,
       foreignContract,
@@ -113,40 +112,15 @@ export const SolanaModal = () => {
     const currentSeq = currentSeqBytes.readUIntLE(0, currentSeqBytes.length);
 
     const nextSeq = currentSeq + 1
-    console.log('currentSeq', currentSeq, nextSeq)
 
     const wormholeMessage = deriveTokenTransferMessageKey(
       new PublicKey(OMNISWAP_PROGRAM_ID),
       nextSeq
     )
 
-    const tokenAccounts = await getTokenAccounts(connection, solanaAddress)
+    // const tokenAccounts = await getTokenAccounts(connection, solanaAddress)
 
-    const fromTokenAccount = tokenAccounts.find(i => i.tokenAddress.toLowerCase() === USDC_ADDRESS_SOLANA.toLowerCase())
-
-    console.log('wormholeMessage', {
-      payer: solanaAddress.toString(),
-      config: sendConfig.toString(),
-      foreignContract: foreignContract.toString(),
-      mint: USDC_PUBLIC_KEY.toString(),
-      fromTokenAccount: fromTokenAccount.tokenAccount.toString(),
-      tmpTokenAccount: tmpTokenAccount.toString(),
-      wormholeProgram: wormholeProgram.toString(),
-      tokenBridgeProgram: tokenBridgeProgram.toString(),
-      tokenBridgeConfig: tokenBridgeConfig.toString(),
-      tokenBridgeCustody: tokenBridgeCustody.toString(),
-      tokenBridgeAuthoritySigner: tokenBridgeAuthoritySigner.toString(),
-      tokenBridgeCustodySigner: tokenBridgeCustodySigner.toString(),
-      wormholeBridge: wormholeBridge.toString(),
-      wormholeMessage: wormholeMessage.toString(),
-      tokenBridgeEmitter: tokenBridgeEmitter.toString(),
-      tokenBridgeSequence: tokenBridgeSequence.toString(),
-      wormholeFeeCollector: wormholeFeeCollector.toString(),
-      tokenProgram: TOKEN_PROGRAM_ID.toString(),
-      associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID.toString(),
-      clock: SYSVAR_CLOCK_PUBKEY.toString(),
-      rent: SYSVAR_RENT_PUBKEY.toString(),
-    })
+    const fromTokenAccount = solTokens.find(i => i.address.toLowerCase() === USDC_ADDRESS_SOLANA.toLowerCase())
 
     const transaction = await omniswapProgram.methods
       .sendNativeTokensWithPayload(
@@ -161,7 +135,7 @@ export const SolanaModal = () => {
         config: sendConfig,
         foreignContract: foreignContract,
         mint: USDC_PUBLIC_KEY,
-        fromTokenAccount: fromTokenAccount?.tokenAccount,
+        fromTokenAccount: fromTokenAccount?.mintAccount,
         tmpTokenAccount: tmpTokenAccount,
         wormholeProgram: wormholeProgram,
         tokenBridgeProgram: tokenBridgeProgram,

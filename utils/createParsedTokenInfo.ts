@@ -9,6 +9,7 @@ export function createParsedTokenInfo({
   uiAmountString,
   symbol,
   isNativeAsset,
+  mintAccount,
   logo = '',
   name = 'Solana'
 }: ParsedTokenInfo): ParsedTokenInfo {
@@ -23,5 +24,6 @@ export function createParsedTokenInfo({
     name,
     logo,
     isNativeAsset,
+    mintAccount,
   };
 }

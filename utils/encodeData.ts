@@ -1,4 +1,5 @@
 import {serializeU16, serializeU256, serializeVectorWithLength} from './serializeContent'
+import { Buffer } from 'buffer'
 
 const encodeWormholeData = (
   dstWormholeChainId: number,
@@ -27,6 +28,7 @@ function encodeSoData(transactionId, receiver, sourceChainId, sendingAssetId, de
   data = Buffer.concat([data, serializeU16(destinationChainId)]);
   data = Buffer.concat([data, serializeVectorWithLength(receivingAssetId)]);
   data = Buffer.concat([data, serializeU256(amount)]);
+  console.log('data', data)
   return data;
 }
 
