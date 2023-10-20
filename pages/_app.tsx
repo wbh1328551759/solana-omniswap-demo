@@ -3,9 +3,11 @@ import { ChakraProvider } from '@chakra-ui/react'
 import {SolanaWalletProvider} from '../hooks/SolanaWalletProvider'
 import { WagmiConfig, createConfig, configureChains, mainnet } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+import { polygon } from '@wagmi/core/chains'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet],
+  [mainnet, polygon],
   [publicProvider()],
 )
 

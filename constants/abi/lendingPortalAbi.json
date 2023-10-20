@@ -1,0 +1,434 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "contract IWormholeAdapterPool",
+        "name": "_wormholeAdapterPool",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "nonce",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "rewardPool",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "withdrawPool",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "receiver",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "sourceChainId",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "dstChainId",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "boostPoolId",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "boostAction",
+        "type": "uint16"
+      }
+    ],
+    "name": "ClaimRewardEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "nonce",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "dolaPoolAddress",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "sourceChainId",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "dstChainId",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes",
+        "name": "receiver",
+        "type": "bytes"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "amount",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "callType",
+        "type": "uint8"
+      }
+    ],
+    "name": "LendingPortalEvent",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "sequence",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "nonce",
+        "type": "uint64"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feeAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint16",
+        "name": "appId",
+        "type": "uint16"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "callType",
+        "type": "uint8"
+      }
+    ],
+    "name": "RelayEvent",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "LENDING_APP_ID",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16[]",
+        "name": "dolaPoolIds",
+        "type": "uint16[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "as_collateral",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "token",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "receiver",
+        "type": "bytes"
+      },
+      {
+        "internalType": "uint16",
+        "name": "dstChainId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint64",
+        "name": "amount",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "borrow",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16[]",
+        "name": "dolaPoolIds",
+        "type": "uint16[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "cancel_as_collateral",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "rewardPool",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "token",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "receiver",
+        "type": "bytes"
+      },
+      {
+        "internalType": "uint16",
+        "name": "dstChainId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint16",
+        "name": "boostPoolId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint8",
+        "name": "boostAction",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "claim_reward",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "repayPoolId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint64",
+        "name": "liquidateUserId",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint16",
+        "name": "liquidatePoolId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "liquidate",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "repay",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "sponsor",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "supply",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "token",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "receiver",
+        "type": "bytes"
+      },
+      {
+        "internalType": "uint16",
+        "name": "dstChainId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "uint64",
+        "name": "amount",
+        "type": "uint64"
+      },
+      {
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "wormholeAdapterPool",
+    "outputs": [
+      {
+        "internalType": "contract IWormholeAdapterPool",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
